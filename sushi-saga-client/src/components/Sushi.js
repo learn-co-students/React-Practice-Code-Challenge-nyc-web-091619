@@ -1,20 +1,38 @@
 import React, { Fragment } from 'react'
 
 const Sushi = (props) => {
+  console.log(props.money, props.sushi.price)
   return (
     <div className="sushi">
+      {props.money > props.sushi.price
+      ?
       <div className="plate" 
-           onClick={/* Give me a callback! */ null}>
+           id={props.sushi.id}
+           data-money={props.sushi.price}
+           onClick={props.eatSushi}>
         { 
-          /* Tell me if this sushi has been eaten! */ 
-          true ?
-            null
+          props.eaten.includes(props.sushi.id) 
+          ?
+          null
           :
-            <img src={/* Give me an image source! */} width="100%" />
+          <img src={props.sushi.img_url} width="100%" alt="sushi image"/>
         }
       </div>
+      :
+      <div className="plate" 
+           id={props.sushi.id}
+           data-money={props.sushi.price}
+           onClick={()=>{alert("no money no mo")}}>
+        { 
+          props.eaten.includes(props.sushi.id) 
+          ?
+          null
+          :
+          <img src={props.sushi.img_url} width="100%" alt="sushi image"/>
+        }
+      </div>}
       <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
+        {props.sushi.name} - ${props.sushi.price}
       </h4>
     </div>
   )
