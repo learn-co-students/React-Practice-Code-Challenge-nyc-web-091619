@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   eatSushi = sushi =>{
-    if(this.state.money_left - sushi.price > 0){
+    if(this.state.money_left - sushi.price > 0 && !this.state.eaten.includes(sushi)){
       this.setState({
         eaten: [...this.state.eaten, sushi],
         money_left: this.state.money_left - sushi.price
